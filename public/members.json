@@ -42,6 +42,27 @@
     "site_admin": false
   },
   {
+    "login": "KevinFelip-hub",
+    "id": 73113859,
+    "node_id": "MDQ6VXNlcjczMTEzODU5",
+    "avatar_url": "https://avatars.githubusercontent.com/u/73113859?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/KevinFelip-hub",
+    "html_url": "https://github.com/KevinFelip-hub",
+    "followers_url": "https://api.github.com/users/KevinFelip-hub/followers",
+    "following_url": "https://api.github.com/users/KevinFelip-hub/following{/other_user}",
+    "gists_url": "https://api.github.com/users/KevinFelip-hub/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/KevinFelip-hub/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/KevinFelip-hub/subscriptions",
+    "organizations_url": "https://api.github.com/users/KevinFelip-hub/orgs",
+    "repos_url": "https://api.github.com/users/KevinFelip-hub/repos",
+    "events_url": "https://api.github.com/users/KevinFelip-hub/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/KevinFelip-hub/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  {
     "login": "mur4i",
     "id": 89431075,
     "node_id": "MDQ6VXNlcjg5NDMxMDc1",
