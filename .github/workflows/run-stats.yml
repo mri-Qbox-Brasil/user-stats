@@ -2,17 +2,19 @@ name: Run Stats
 
 on:
   schedule:
-    - cron: "0 * * * *"
-  workflow_dispatch:
+    - cron: "0 0 * * *" # Executa 1 vez ao dia, à meia-noite
+  workflow_dispatch: # Permite execução manual
 
 jobs:
   fetch-members:
     runs-on: ubuntu-latest
 
     steps:
+      # Baixar o repositório
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Fazer a requisição à API do GitHub
       - name: Fetch organization members
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,10 +22,15 @@ jobs:
           curl -H "Authorization: Bearer $GITHUB_TOKEN" \
             https://api.github.com/orgs/mri-Qbox-Brasil/members > public/members.json
 
+      # Verificar alterações e enviar (se necessário)
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/members.json
+          if git diff-index --quiet HEAD; then
+            echo "Nenhuma alteração encontrada. Finalizando o workflow com sucesso."
+            exit 0
+          fi
           git commit -m "Update organization members data"
           git push
