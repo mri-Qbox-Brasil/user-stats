@@ -21,6 +21,27 @@
     "site_admin": false
   },
   {
+    "login": "GordelaG",
+    "id": 129328566,
+    "node_id": "U_kgDOB7Vltg",
+    "avatar_url": "https://avatars.githubusercontent.com/u/129328566?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/GordelaG",
+    "html_url": "https://github.com/GordelaG",
+    "followers_url": "https://api.github.com/users/GordelaG/followers",
+    "following_url": "https://api.github.com/users/GordelaG/following{/other_user}",
+    "gists_url": "https://api.github.com/users/GordelaG/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/GordelaG/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/GordelaG/subscriptions",
+    "organizations_url": "https://api.github.com/users/GordelaG/orgs",
+    "repos_url": "https://api.github.com/users/GordelaG/repos",
+    "events_url": "https://api.github.com/users/GordelaG/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/GordelaG/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  {
     "login": "JJ4hts",
     "id": 105169497,
     "node_id": "U_kgDOBkTCWQ",
