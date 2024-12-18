@@ -25,13 +25,6 @@ jobs:
           curl -H "Authorization: Bearer $GITHUB_TOKEN" \
             https://api.github.com/orgs/mri-Qbox-Brasil/members > public/members.json
 
-      - name: Fetch organization members
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          curl -H "Authorization: Bearer $GITHUB_TOKEN" \
-            "https://api.github.com/orgs/mri-Qbox-Brasil/members?role=admin" > public/admins.json
-
       # Verificar alterações e enviar (se necessário)
       - name: Commit and push changes
         run: |
