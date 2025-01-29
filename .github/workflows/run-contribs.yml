@@ -31,7 +31,7 @@ jobs:
             done
           done
 
-          printf '%s\n' "${contributors[@]}" | jq -R . | jq -s . > contributors.json
+          printf '%s\n' "${contributors[@]}" | jq -R . | jq -s . > public/contributors.json
 
       - name: Commit e push
         run: |
