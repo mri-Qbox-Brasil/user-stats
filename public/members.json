@@ -166,5 +166,26 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false
+  },
+  {
+    "login": "xstells",
+    "id": 199992360,
+    "node_id": "U_kgDOC-ukKA",
+    "avatar_url": "https://avatars.githubusercontent.com/u/199992360?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/xstells",
+    "html_url": "https://github.com/xstells",
+    "followers_url": "https://api.github.com/users/xstells/followers",
+    "following_url": "https://api.github.com/users/xstells/following{/other_user}",
+    "gists_url": "https://api.github.com/users/xstells/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/xstells/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/xstells/subscriptions",
+    "organizations_url": "https://api.github.com/users/xstells/orgs",
+    "repos_url": "https://api.github.com/users/xstells/repos",
+    "events_url": "https://api.github.com/users/xstells/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/xstells/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
   }
 ]
