@@ -20,6 +20,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Ou qualquer outra versão do Node.js que você preferir
+
+      - name: Install dependencies
+        run: |
+          npm install
+
       - name: Fetch organization members
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,23 +38,8 @@ jobs:
 
       - name: Merge kofi usernames into members.json
         run: |
-          if [ -f public/kofi.json ] && [ -s public/kofi.json ]; then
-            jq --slurpfile k public/kofi.json '
-              map(
-                . as $m |
-                if ($m | type == "object") and ($m | has("login")) then
-                  # Encontrar o kofi_username correspondente e adicioná-lo ao objeto
-                  ($k | map(select(.login == $m.login))[0] | {kofi_username}) as $ku |
-                  ($m + ($ku // {}))  # Adiciona ou ignora o kofi_username
-                else
-                  $m  # Caso o item não seja um objeto com login
-                end
-              )
-            ' public/members.json > public/members.tmp.json && mv public/members.tmp.json public/members.json
-            echo "Merged kofi usernames into public/members.json"
-          else
-            echo "public/kofi.json not found or empty; skipping merge"
-          fi
+          # Execute o script JavaScript para fazer o merge
+          node merge_members.js
 
       - name: Commit and push changes
         run: |
