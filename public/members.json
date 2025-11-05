@@ -39,7 +39,8 @@
     "received_events_url": "https://api.github.com/users/ggfto/received_events",
     "type": "User",
     "user_view_type": "public",
-    "site_admin": false
+    "site_admin": false,
+    "kofi_username": "gfive91"
   },
   {
     "login": "GordelaG",
@@ -102,7 +103,8 @@
     "received_events_url": "https://api.github.com/users/JJ4hts/received_events",
     "type": "User",
     "user_view_type": "public",
-    "site_admin": false
+    "site_admin": false,
+    "kofi_username": "jj4hts"
   },
   {
     "login": "KevinFelip-hub",
@@ -144,7 +146,8 @@
     "received_events_url": "https://api.github.com/users/mur4i/received_events",
     "type": "User",
     "user_view_type": "public",
-    "site_admin": false
+    "site_admin": false,
+    "kofi_username": "mur4i"
   },
   {
     "login": "SubZer0GLX",
@@ -165,7 +168,8 @@
     "received_events_url": "https://api.github.com/users/SubZer0GLX/received_events",
     "type": "User",
     "user_view_type": "public",
-    "site_admin": false
+    "site_admin": false,
+    "kofi_username": "subzer0dev"
   },
   {
     "login": "xstells",
