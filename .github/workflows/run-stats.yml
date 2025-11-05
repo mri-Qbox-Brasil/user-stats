@@ -23,12 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # Ou qualquer outra versão do Node.js que você preferir
-
-      - name: Install dependencies
-        run: |
-          npm install
-
+          node-version: '25'
       - name: Fetch organization members
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
