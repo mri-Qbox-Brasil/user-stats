@@ -25,13 +25,20 @@ jobs:
           curl -H "Authorization: Bearer $GITHUB_TOKEN" \
             https://api.github.com/orgs/mri-Qbox-Brasil/members > public/members.json
 
-      # Novo: mesclar kofi_username a partir de public/kofi.json
+      # Novo: mesclar kofi_username a partir de public/kofi.json (mais robusto)
       - name: Merge kofi usernames into members.json
         run: |
           if [ -f public/kofi.json ] && [ -s public/kofi.json ]; then
-            jq --slurpfile k public/kofi.json \
-              'map(. as $m | $m + ($k[] | select(.login == $m.login) | {kofi_username}))' \
-              public/members.json > public/members.tmp.json && mv public/members.tmp.json public/members.json
+            jq --slurpfile k public/kofi.json '
+              map(. as $m |
+                if ($m | type == "object") and ($m | has("login")) then
+                  ($k | map(select(.login == $m.login))[0] | {kofi_username}) as $ku |
+                  ($m + ($ku // {}))
+                else
+                  $m
+                end
+              )
+            ' public/members.json > public/members.tmp.json && mv public/members.tmp.json public/members.json
             echo "Merged kofi usernames into public/members.json"
           else
             echo "public/kofi.json not found or empty; skipping merge"
