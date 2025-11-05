@@ -8,16 +8,18 @@ on:
     branches:
       - main
 
-jobs:
-  fetch-members:
-    runs-on: ubuntu-latest
+permissions:
+  contents: write
+  packages: write
 
+jobs:
+  prepare_members:
+    name: 📦 Preparar dados de membros
+    runs-on: ubuntu-latest
     steps:
-      # Baixar o repositório
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Fazer a requisição à API do GitHub
       - name: Fetch organization members
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -25,15 +27,16 @@ jobs:
           curl -H "Authorization: Bearer $GITHUB_TOKEN" \
             https://api.github.com/orgs/mri-Qbox-Brasil/members > public/members.json
 
-      # Novo: mesclar kofi_username a partir de public/kofi.json (mais robusto)
       - name: Merge kofi usernames into members.json
         run: |
           if [ -f public/kofi.json ] && [ -s public/kofi.json ]; then
             jq --slurpfile k public/kofi.json '
-              map(. as $m |
+              map(
+                . as $m |
                 if ($m | type == "object") and ($m | has("login")) then
-                  ($k | map(select(.login == $m.login))[0] | {kofi_username}) as $ku |
-                  ($m + ($ku // {}))
+                  $k | map(select(.login == $m.login))[0] |
+                    {kofi_username} as $ku |
+                    ($m + ($ku // {}))
                 else
                   $m
                 end
@@ -44,7 +47,6 @@ jobs:
             echo "public/kofi.json not found or empty; skipping merge"
           fi
 
-      # Verificar alterações e enviar (se necessário)
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
@@ -56,3 +58,67 @@ jobs:
           fi
           git commit -m "Update organization members data"
           git push
+
+#   create_release:
+#     name: 🚀 Criar Release
+#     runs-on: ubuntu-latest
+#     needs: prepare_members
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Create GitHub Release
+#         uses: comnoco/create-release-action@v2
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: "${{ github.ref_name }}"
+#           release_name: "Release ${GITHUB_REF_NAME}"
+#           body: "Atualização dos membros da organização com novos dados de kofi_username."
+#           draft: false
+#           prerelease: false
+
+#   post_to_discord:
+#     name: 🔔 Notificar no Discord
+#     runs-on: ubuntu-latest
+#     needs: create_release
+#     steps:
+#       - name: Install jq
+#         run: sudo apt-get update && sudo apt-get install -y jq
+
+#       - name: Post to Discord
+#         env:
+#           DISCORD_WEBHOOK_URL: ${{ secrets.UPDATE_DISCORD_WEBHOOK }}
+#           RELEASE_URL: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}
+#           RELEASE_TAG: ${{ github.ref_name }}
+#           RELEASE_AUTHOR: ${{ github.actor }}
+#         run: |
+#           if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+#             echo "Webhook URL não definido. Pulando o envio do webhook."
+#             exit 0
+#           fi
+#           REPO_DESCRIPTION=$(curl -s https://api.github.com/repos/${{ github.repository }} | jq -r .description)
+#           EMBED_DATA='{
+#               "embeds": [{
+#               "author": {
+#                 "name": "Github - Updates",
+#                 "icon_url": "'"${LOGO_URL:-}"'"
+#               },
+#               "title": "[${{ github.event.repository.name }}] Nova versão disponível: '"${RELEASE_TAG}"'",
+#               "url": "'"${RELEASE_URL}"'",
+#               "description": "'"${REPO_DESCRIPTION}"'",
+#               "fields": [{
+#                   "name": "O que há de novo?",
+#                   "value": "Membros atualizados com novos dados."
+#               }],
+#               "color": 4243543,
+#               "footer": {
+#                 "text": "Realizado por: '"${RELEASE_AUTHOR}"'",
+#                 "icon_url": "'"${LOGO_URL:-}"'"
+#               },
+#               "timestamp": "'"$(date --utc +%Y-%m-%dT%H:%M:%SZ)"'"
+#               }]
+#           }'
+#           curl -H "Content-Type: application/json" \
+#               -d "$EMBED_DATA" \
+#               $DISCORD_WEBHOOK_URL
