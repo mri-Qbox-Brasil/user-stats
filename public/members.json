@@ -82,7 +82,8 @@
         "received_events_url": "https://api.github.com/users/gvs006/received_events",
         "type": "User",
         "user_view_type": "public",
-        "site_admin": false
+        "site_admin": false,
+        "kofi_username": "gh_developer"
     },
     {
         "login": "JJ4hts",
