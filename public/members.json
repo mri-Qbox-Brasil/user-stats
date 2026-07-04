@@ -61,7 +61,8 @@
         "received_events_url": "https://api.github.com/users/GordelaG/received_events",
         "type": "User",
         "user_view_type": "public",
-        "site_admin": false
+        "site_admin": false,
+        "kofi_username": "newagestudios"
     },
     {
         "login": "gvs006",
