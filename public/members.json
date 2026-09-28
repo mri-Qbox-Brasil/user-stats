@@ -87,28 +87,6 @@
         "kofi_username": "gh_developer"
     },
     {
-        "login": "JJ4hts",
-        "id": 105169497,
-        "node_id": "U_kgDOBkTCWQ",
-        "avatar_url": "https://avatars.githubusercontent.com/u/105169497?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/JJ4hts",
-        "html_url": "https://github.com/JJ4hts",
-        "followers_url": "https://api.github.com/users/JJ4hts/followers",
-        "following_url": "https://api.github.com/users/JJ4hts/following{/other_user}",
-        "gists_url": "https://api.github.com/users/JJ4hts/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/JJ4hts/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/JJ4hts/subscriptions",
-        "organizations_url": "https://api.github.com/users/JJ4hts/orgs",
-        "repos_url": "https://api.github.com/users/JJ4hts/repos",
-        "events_url": "https://api.github.com/users/JJ4hts/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/JJ4hts/received_events",
-        "type": "User",
-        "user_view_type": "public",
-        "site_admin": false,
-        "kofi_username": "jj4hts"
-    },
-    {
         "login": "mur4i",
         "id": 89431075,
         "node_id": "MDQ6VXNlcjg5NDMxMDc1",
